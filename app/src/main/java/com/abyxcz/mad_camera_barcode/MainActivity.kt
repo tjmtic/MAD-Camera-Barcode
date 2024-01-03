@@ -11,9 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.abyxcz.mad_camera_barcode.ui.theme.MAD_Camera_BarcodeTheme
-import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.rememberPermissionState
-import android.Manifest
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +22,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    CameraComposable()
                 }
             }
         }
@@ -38,13 +35,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         text = "Hello $name!",
         modifier = modifier
     )
-}
-
-@OptIn(ExperimentalPermissionsApi::class)
-@Composable
-fun CameraComposable() {
-    val cameraPermissionState = rememberPermissionState(Manifest.permission.CAMERA)
-
 }
 
 @Preview(showBackground = true)
