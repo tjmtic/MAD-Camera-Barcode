@@ -68,10 +68,13 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     //Accompanist Permissions
-    implementation("com.google.accompanist:accompanist-permissions:0.32.0")
+    implementation("com.google.accompanist:accompanist-permissions:0.18.0")
 
     //Jetpack CameraX Compose
     implementation("androidx.camera:camera-camera2:1.3.1")
     implementation("androidx.camera:camera-lifecycle:1.3.1")
     implementation("androidx.camera:camera-view:1.4.0-alpha03")
+
+    implementation("com.google.android.material:material:1.11.0")
+    implementation("androidx.compose.material3:material3:1.2.0-beta01")
 }
