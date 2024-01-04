@@ -75,6 +75,12 @@ dependencies {
     implementation("androidx.camera:camera-lifecycle:1.0.1")
     implementation("androidx.camera:camera-view:1.0.0-alpha28")
 
+    //Material UI
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.compose.material3:material3:1.2.0-beta01")
+
+    //Barcode
+    implementation("com.google.zxing:core:3.2.1")
+
+
 }
