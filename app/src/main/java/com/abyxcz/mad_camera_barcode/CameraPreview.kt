@@ -7,12 +7,14 @@ import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.view.PreviewView
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import kotlinx.coroutines.launch
@@ -30,8 +32,6 @@ fun CameraPreview(
     fun hideCamera(){
         onHideCamera()
     }
-
-    Button(onClick = { hideCamera() }, content = { Text("Back")})
 
     AndroidView(
         modifier = modifier,
@@ -56,6 +56,18 @@ fun CameraPreview(
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .build()
 
+            imageAnalysis.setAnalyzer(ContextCompat.getMainExecutor(context), QRCodeImageAnalyzer(object :
+                QRCodeFoundListener {
+                override fun onQRCodeFound(qrCode: String?) {
+                    println("QR Code found: $qrCode")
+                    hideCamera()
+                }
+
+                override fun qrCodeNotFound() {
+                    println("QR Code Not Found yet...")
+                }
+            }))
+
             coroutineScope.launch {
                 val cameraProvider = context.getCameraProvider()
                 try {
@@ -73,4 +85,6 @@ fun CameraPreview(
             previewView
         }
     )
+
+    Button(onClick = { hideCamera() }, content = { Text("Back")})
 }
