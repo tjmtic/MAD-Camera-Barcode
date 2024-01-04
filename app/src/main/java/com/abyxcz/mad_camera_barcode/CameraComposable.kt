@@ -41,6 +41,7 @@ fun CameraComposable(modifier : Modifier = Modifier) {
         }
     ) {
         //Show Camera View
+        CameraPreview(onHideCamera = {})
     }
 
 }
